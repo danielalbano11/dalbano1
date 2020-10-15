@@ -1,0 +1,105 @@
+Report Title: SPR500 Lab3 Report
+
+Full Name: Daniel Albano
+
+Username: dalbano1
+
+Student number: 150541183
+
+Routing table: 
+
+default via 172.17.255.1 dev ens192 proto dhcp metric 100 
+172.17.0.0/16 dev ens192 proto kernel scope link src 172.17.2.2 metric 100 
+192.168.2.0/24 dev ens224 proto kernel scope link src 192.168.2.2 metric 101 
+
+HTTP Server running on Port 80: 
+
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Mon 2020-10-12 20:47:49 EDT; 1 day 12h ago
+     Docs: man:httpd.service(8)
+  Process: 6396 ExecReload=/usr/sbin/httpd $OPTIONS -k graceful (code=exited, status=0/SUCCESS)
+ Main PID: 8799 (httpd)
+   Status: "Total requests: 13; Idle/Busy workers 100/0;Requests/sec: 9.83e-05; Bytes served/sec:   0 B/sec"
+    Tasks: 213 (limit: 11479)
+   Memory: 24.7M
+   CGroup: /system.slice/httpd.service
+           ├─8799 /usr/sbin/httpd -DFOREGROUND
+           ├─8801 /usr/sbin/httpd -DFOREGROUND
+           ├─8802 /usr/sbin/httpd -DFOREGROUND
+           ├─8803 /usr/sbin/httpd -DFOREGROUND
+           └─8804 /usr/sbin/httpd -DFOREGROUND
+
+Oct 12 20:47:49 localhost.localdomain systemd[1]: Stopped The Apache HTTP Server.
+Oct 12 20:47:49 localhost.localdomain systemd[1]: Starting The Apache HTTP Server...
+Oct 12 20:47:49 localhost.localdomain httpd[8799]: AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using localhost.localdomain. Set the 'ServerName' directive globally to suppress this message
+Oct 12 20:47:49 localhost.localdomain systemd[1]: Started The Apache HTTP Server.
+Oct 12 20:47:49 localhost.localdomain httpd[8799]: Server configured, listening on: port 80
+
+/var/log/messages size: 
+
+-rw-------. 1 root root 56791 Oct 14 08:49 /var/log/messages
+
+/var/log/boot.log size: 
+
+-rw-------. 1 root root 0 Oct 10 03:42 /var/log/boot.log
+
+/var/log/maillog size: 
+
+-rw-------. 1 root root 0 Oct 11 03:27 /var/log/maillog
+
+/var/log/secure size : 
+
+-rw-------. 1 root root 26888 Oct 14 09:32 /var/log/secure
+
+/var/log/wtmp size: 
+
+-rw-rw-r--. 1 root utmp 39552 Oct  9 17:31 /var/log/wtmp
+
+/var/log/btmp size: 
+
+-rw-rw-r--. 1 root utmp 39552 Oct  9 17:31 /var/log/wtmp
+
+/var/log/lastlog size: 
+
+-rw-rw-r--. 1 root utmp 292876 Oct  9 17:31 /var/log/lastlog
+
+/var/log/dnf.log size: 
+
+-rw-r--r--. 1 root root 959612 Oct 14 08:49 /var/log/dnf.log
+
+Number of active services on VM2: 
+34
+
+Number of RPM packaged currently installed: 
+478
+
+current firewall rules
+Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+   10   626 ACCEPT     tcp  --  ens224 *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80
+   58  4767 ACCEPT     tcp  --  ens192 *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80
+ 1690 1069K ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0           
+   24  1440 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            state NEW tcp dpt:22
+ 8953 2704K REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-host-prohibited
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-host-prohibited
+
+Chain OUTPUT (policy ACCEPT 2188 packets, 194K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Current execution mode of SELinux: 
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Memory protection checking:     actual (secure)
+Max kernel policy version:      31
