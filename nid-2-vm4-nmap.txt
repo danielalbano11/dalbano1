@@ -1,0 +1,9 @@
+Starting Nmap 7.70 ( https://nmap.org ) at 2020-10-25 20:20 EDT
+Nmap scan report for 192.168.2.4
+Host is up (-0.0080s latency).
+Not shown: 999 filtered ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+MAC Address: 00:0C:29:BF:C7:8B (VMware)
+
+Nmap done: 1 IP address (1 host up) scanned in 16.62 seconds
