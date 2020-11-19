@@ -1,4 +1,3 @@
-
 #!/bin/bash
 # Created by: Raymond Chan
 # for OPS535
@@ -9,24 +8,21 @@
 #	RNS_FQDN, RNS_IP, DNS_ADMIN_EMAIL
 # (c) 2020 - update for the new wiki url
 #
-if [ -z "${iyusuf1-rns}" ]
+if [ -z "${RNS_FQDN}" ]
 then
-
 	echo "Please set the shell variable RNS_FQDN to the FQDN of your" >&2
 	echo "root name server and run this script again." >&2
 	exit 1
 fi
 
-
-if [ -z "${192.168.29.253}" ]
+if [ -z "${RNS_IP}" ]
 then
 	echo "Please set the shell variable RNS_IP to the IP address" >&2
         echo "of your root name server and run this script again." >&2
 	exit 2
 fi
 
-
-if [ -z "${hostmaster.ai.com}" ]
+if [ -z "${DNS_ADMIN_EMAIL}" ]
 then
 	echo "Please set the shell variable DNS_ADMIN_EMAIL to the" >&2
 	echo "email address of your DNS administrator and run this" >&2
@@ -36,10 +32,9 @@ fi
 # start loading dns information from the web
 url=https://wiki.cdot.senecacollege.ca/w/index.php/Domainreg
 
-
 if [ ! -f raw.txt ]
 then
-	echo "Getttting wiki file from the web ..." >&2
+	echo "Gettting wiki file from the web ..." >&2
 	wget -O raw.txt $url
 fi
 
@@ -51,9 +46,9 @@ b=6
 # generating the zone file header
 SN=$(date +%y%j%H) # yydddHH
 echo "\$TTL 3600"
-echo "@ IN SOA ${iyusuf1-rns} ${hostmaster.ai.com} (${SN} 1h 15m 30d 1h)"
-echo "      IN NS ${iyusuf1-rns}"
-echo "${RNS_FQDN} IN A ${192.168.29.253}"
+echo "@ IN SOA ${RNS_FQDN} ${DNS_ADMIN_EMAIL} (${SN} 1h 15m 30d 1h)"
+echo "      IN NS ${RNS_FQDN}"
+echo "${RNS_FQDN} IN A ${RNS_IP}"
 
 while [ $a -lt $nl ]
 do
